@@ -1,0 +1,65 @@
+     CAT(1)                                                     CAT(1)
+
+     NAME
+          cat, read - catenate files
+
+     SYNOPSIS
+          cat [ file ... ]
+          read [ -m ] [ -n nline ] [ file ... ]
+
+     DESCRIPTION
+          Cat reads each file in sequence and writes it on the stan-
+          dard output.  Thus
+
+               cat file
+
+          prints a file and
+
+               cat file1 file2 >file3
+
+          concatenates the first two files and places the result on
+          the third.
+          
+                cat file1 file2 + file3
+          
+          Does non-destrucitve amending, this is done by adding an
+          newline and any following text before the "+", if there's
+          an nonexistent file, the result is the same as the conca
+          -teateion above.
+
+          If no file is given, cat reads from the standard input.
+          Output is buffered in blocks matching the input.
+
+          Read copies to standard output exactly one line from the
+          named file, default standard input.  It is useful in inter-
+          active rc(1) scripts.
+
+          The -m flag causes it to continue reading and writing multi-
+          ple lines until end of file; -n causes it to read no more
+          than nline lines.
+
+          Read always executes a single write for each line of input,
+          which can be helpful when preparing input to programs that
+          expect line-at-a-time data.  It never reads any more data
+          from the input than it prints to the output.
+          
+          
+
+     SOURCE
+          /sys/src/cmd/cat.c
+          /sys/src/cmd/read.c
+
+     SEE ALSO
+          cp(1)
+
+     DIAGNOSTICS
+          Read exits with status eof on end of file or, in the -n
+          case, if it doesn't read nlines lines.
+
+     BUGS
+          Beware of `cat a b >a' and `cat a b >b', which destroy input
+          files before reading them.
+          
+          'cat a b + c' and 'cat a b + a' does not take in account 
+          files that are strictly formated and have a mandtory 
+          requirement of a single header (e.g.- HTML).
