@@ -24,8 +24,11 @@
           
           Does non-destrucitve amending, this is done by adding an
           newline and any following text before the "+", if there's
-          an nonexistent file, the result is the same as the conca
-          -teateion above.
+          an nonexistent file, the result is the same as
+          
+               cat file1 file2 > file3
+          
+          when file3 does not exist just yet.
 
           If no file is given, cat reads from the standard input.
           Output is buffered in blocks matching the input.
